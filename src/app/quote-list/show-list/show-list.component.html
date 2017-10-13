@@ -1,0 +1,15 @@
+
+<div class="container" *ngFor="let x of quotes">
+  <div class="row">
+    <div class="col-xs-7">
+      <p>{{ x.quote }}</p>
+      <p>{{ x.author }}</p>
+    </div>
+    <div class="col-xs-2 spacing"><h2>{{ x.number }}</h2></div>
+    <div class="col-xs-3 spacing">
+      <button (click)=" x.number = x.number + 1 " type="button" class="btn btn-success">Vote Up</button>
+      <button (click)="x.number = x.number - 1" type="button" class="btn btn-danger">Vote Down</button>
+      <button (click)="quotes.splice(x, 1)" type="button" class="btn">Delete</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+
+<div class="container">
+  <h1>Add a Quote</h1>
+
+  <div class="container">
+    <form (submit)="onSubmit()" #heroForm="ngForm" novalidate>
+      <div class="form-group col-xs-8">
+        <label for="quote">Quote:</label>
+        <textarea class="form-control quote" rows="5" id="quote" name="quote" required minlength="6" [(ngModel)]="quote.quote" #currentQuote='ngModel'></textarea>
+      </div>
+      <span *ngIf="quote.errors && (quote.dirty || quote.touched)" class="alert">
+        <span class="warn" [hidden]="!quote.errors.required">Quote is required.</span>
+        <span class="warn" [hidden]="!quote.errors.minlength">Quote must be at least 6 characters long.</span> 
+      </span>
+      <div class="form-group form-inline name-input col-xs-8 sub-but">
+        <label for="author">Author:</label>
+        <input type="text" class="form-control" id="author" name="author" required minlength="2" [(ngModel)]="quote.author" #currentAuthor='ngModel'>
+      </div>
+      <span *ngIf="currentAuthor.errors && (currentAuthor.dirty)" class="alert">
+        <span class="warn" [hidden]="!currentAuthor.errors.required">Author is required.</span>
+      </span>
+
+      <br>
+      <div class="form-group col-xs-8 sub-but">
+        <input type="submit" [disabled]="!heroForm.form.valid" class="btn btn-primary">
+      </div>
+    </form>
+  </div>
+</div>
+<app-show-list [quotes]="onSort(quotes)"></app-show-list>
